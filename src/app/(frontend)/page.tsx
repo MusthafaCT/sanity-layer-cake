@@ -7,10 +7,11 @@ export default async function Page() {
     query: HOME_PAGE_QUERY,
   });
 
-  console.log(page);
-  
-
   return page?.homePage?.content ? (
-    <PageBuilder content={page?.homePage.content} />
+    <PageBuilder
+      documentId={page?.homePage._id}
+      documentType={page?.homePage._type}
+      content={page?.homePage.content}
+    />
   ) : null;
 }
