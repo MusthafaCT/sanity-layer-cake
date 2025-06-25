@@ -1,7 +1,8 @@
 import { POST_QUERY, POSTS_SLUGS_QUERY } from '@/sanity/lib/queries'
 import { Post } from '@/components/Post'
 import { notFound } from 'next/navigation'
-import { client, sanityFetch } from '@/sanity/lib/client'
+import { client } from '@/sanity/lib/client'
+import { sanityFetch } from "@/sanity/lib/live";
 
 // add this export
 export async function generateStaticParams() {
@@ -18,7 +19,7 @@ export default async function Page({
   params: Promise<{ slug: string }>;
 }) {
 
-const post = await sanityFetch({
+const {data: post} = await sanityFetch({
   query: POST_QUERY,
   params: await params,
 })

@@ -7,9 +7,10 @@ export const client = createClient({
   dataset,
   apiVersion, // https://www.sanity.io/docs/api-versioning
   useCdn: true, // Set to false if statically generating pages, using ISR or tag-based revalidation
+  stega: { studioUrl: '/studio' },
 })
 
-export async function sanityFetch<const QueryString extends string>({
+export async function sanityFetchClient<const QueryString extends string>({
   query,
   params = {},
   revalidate = 60, // default revalidation time in seconds
